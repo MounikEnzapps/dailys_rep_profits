@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_day_wise_profit,day.wise.profit,model_day_wise_profit,,1,1,1,1
+access_day_wise_profit_lines,day.wise.profit.lines,model_day_wise_profit_lines,,1,1,1,1

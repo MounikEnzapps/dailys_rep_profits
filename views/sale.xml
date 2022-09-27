@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="day_wise_profit_trees" model="ir.ui.view">
+        <field name="name">Day.wise.profit.tree</field>
+        <field name="model">day.wise.profit</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="today_date"/>
+                <field name="company_id"/>
+                <field name="type"/>
+            </tree>
+        </field>
+    </record>
+    <record id="day_wise_profit_views" model="ir.ui.view">
+        <field name="name">day.wise.profit.form</field>
+        <field name="model">day.wise.profit</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="today_date"/>
+                            <field name="company_id" readonly="1"/>
+                            <field name="type"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string=" Details">
+                            <field name="sale_po_lines" mode="tree">
+                                <tree editable="bottom">
+                                    <field name="source" attrs="{'column_invisible': [('parent.type', '!=','day')]}"/>
+                                    <field name="partner_id" attrs="{'column_invisible': [('parent.type', '!=','party')]}"/>
+                                    <field name="product_id" attrs="{'column_invisible': [('parent.type', '!=','brand')]}"/>
+                                    <field name="amount"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_day_wise_profit" model="ir.actions.act_window">
+        <field name="name">Profit Report</field>
+        <field name="res_model">day.wise.profit</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="daily_profit_ids" action="action_day_wise_profit"
+              name="Daily Profit Report"
+              sequence="0" parent="ezp_cash_collection.owner_menus"/>
+
+
+     <record id="neft_rtgs_collection_up_all" model="ir.ui.view">
+        <field name="name">neft.rtgs.collection.form</field>
+        <field name="model">neft.rtgs.collection</field>
+        <field name="inherit_id" ref="ezp_cash_collection.neft_rtgs_collection_form"/>
+        <field name="arch" type="xml">
+                <xpath expr="//button[@name='action_confirm']" position="after">
+                <button name="action_bulk_validate" type="object" string="Bulk Confirm" states="draft" class="oe_highlight"/>
+
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

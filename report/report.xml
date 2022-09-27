@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <report id="day_wise_profit_id"
+            model="day.wise.profit"
+            string="Report"
+            report_type="qweb-pdf"
+            name="dailys_rep_profits.day_wise_profit_format"
+            file="dailys_rep_profits.day_wise_profit_format"/>
+     <report
+            id="day_wise_profit_xlsx"
+            model="day.wise.profit"
+            string="Excel Report"
+            report_type="xlsx"
+            name="dailys_rep_profits.day_wise_profit_xlsx_report"
+            file="dailys_rep_profits.day_wise_profit_xlsx_report"
+            attachment_use="False"
+    />
+
+</odoo>
